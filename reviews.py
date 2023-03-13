@@ -14,25 +14,32 @@ with open('reviews.txt', 'r') as f:
     for line in f:
         n += 1
         data.append(line.strip())
-        if n % 10000 == 0:
+        if n % 100000 == 0:
             print(len(data))
             print(n)
 print(data[0])
 print(data[1])
+print('-----------------')
 
 sum = 0
 for d in data:
     sum += len(d)
 print('平均長度為 : ', sum/len(data))
+print('-----------------')
 
-checklen = 0
+checklen = []
 for d in data:
     if len(d) < 100:
-        checklen += 1
-print('總共有', checklen, '筆資料，長度 < 100')
+        checklen.append(d)
+print('總共有', len(checklen), '筆資料，長度 < 100')
+print(checklen[0])
+print(checklen[1])
+print('-----------------')
 
 checkgood = []
 for d in data:
     if 'good' in d:
         checkgood.append(d)
 print('總共有', len(checkgood), '筆資料，包含good')
+print(checkgood[0])
+print('-----------------')
