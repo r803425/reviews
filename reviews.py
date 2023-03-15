@@ -16,7 +16,7 @@ with open('reviews.txt', 'r') as f:
         data.append(line.strip())
         if n % 100000 == 0:
             print(len(data))
-            print(n)
+print('檔案讀取完了，總共有', len(data), '筆資料')
 print(data[0])
 print(data[1])
 print('-----------------')
@@ -43,3 +43,56 @@ for d in data:
 print('總共有', len(checkgood), '筆資料，包含good')
 print(checkgood[0])
 print('-----------------')
+
+checkgood = [d for d in data if 'good' in d] # 快寫法，等於上面4行
+print('總共有', len(checkgood), '筆資料，包含good')
+print(checkgood[0])
+print('-----------------')
+
+checkgood = [1 for d in data if 'good' in d] # .append(1)
+print('總共有', len(checkgood), '筆資料，包含good')
+print(checkgood)
+print(checkgood[0])
+print('-----------------')
+
+# checkbad = [d for d in data if 'bad' in d] # d 改成 'bad' in d => True/Faslse
+checkbad = ['bad' in d for d in data] # if 條件非必要，可以不寫
+print(checkbad)
+print(checkbad[0])
+print('-----------------')
+
+checkbad = []
+for d in data:
+    checkbad.append('bad' in d)
+print(checkbad)
+print(checkbad[0])
+print('-----------------')
+
+
+# 文字計數
+wordcount = {}
+for d in data:
+    words = d.split() #.split()參數留空，默認空白鍵
+    for word in words:
+        if word in wordcount:
+            wordcount[word] += 1
+        else:
+            wordcount[word] = 1
+
+for word in wordcount:
+    if wordcount[word] > 1000000:
+        print(word, wordcount[word])
+
+print(len(wordcount))
+print(wordcount['Ryan'])
+
+while True:
+    word = input('請輸入你要查詢的單字(輸入q/Q離開)')
+    if word == 'q' or word == 'Q':
+        break
+    if word in wordcount:
+        print(word, '出現次數為 : ', wordcount[word])
+    else:
+        print('此單字沒出現過')
+
+print('感謝使用')
